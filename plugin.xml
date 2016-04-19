@@ -14,7 +14,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="Perspective"
+            name="%perspective.name"
             class="com.starterkit.bartoszzychal.library.perspectives.Perspective"
             id="Library.perspective">
       </perspective>
@@ -24,13 +24,13 @@
       <view
             class="com.starterkit.bartoszzychal.library.views.BooksListView"
             id="Library.BooksList"
-            name="BooksList"
+            name="%view.bookslist"
             restorable="true">
       </view>
       <view
-            class="com.starterkit.bartoszzychal.library.views.BookDetails"
+            class="com.starterkit.bartoszzychal.library.views.BookDetailsView"
             id="Library.BookDetails"
-            name="BookDetails"
+            name="%view.bookdetails"
             restorable="true">
       </view>
    </extension>
@@ -41,7 +41,7 @@
          <view
                id="Library.BookDetails"
                minimized="false"
-               ratio="0.33"
+               ratio="0.5"
                relationship="right"
                relative="Library.BooksList">
          </view>
@@ -58,25 +58,62 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               label="File">
+               label="%menu.file">
             <command
                   commandId="org.eclipse.ui.file.exit"
-                  label="Exit">
+                  label="%command.exit">
             </command>
             <command
-                  commandId="Library.addBook"
-                  label="Add book"
+                  commandId="Library.addNewBook"
+                  label="%command.addnewbook"
+                  style="push">
+            </command>
+            <command
+                  commandId="Library.update"
+                  label="%command.update"
                   style="push">
             </command>
          </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="Library.toolbar">
+            <command
+                  commandId="Library.addNewBook"
+                  icon="icons/add.jpg"
+                  style="push">
+            </command>
+            <command
+                  commandId="Library.update"
+                  icon="icons/alt_window_16.gif"
+                  style="push">
+            </command>
+         </toolbar>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="com.starterkit.bartoszzychal.library.handlers.AddBookHandler"
-            commandId="Library.addBook">
+            commandId="Library.addNewBook">
       </handler>
+      <handler
+            class="com.starterkit.bartoszzychal.library.handlers.UpdateHandler"
+            commandId="Library.update">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="Library.addNewBook"
+            name="%command.addnewbook">
+      </command>
+      <command
+            id="Library.update"
+            name="%command.update">
+      </command>
    </extension>
 
 </plugin>

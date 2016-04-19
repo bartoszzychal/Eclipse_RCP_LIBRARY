@@ -2,6 +2,7 @@ package com.starterkit.bartoszzychal.library.dataProvider;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,9 +29,9 @@ public class DataProvider{
 	}
 
 	public List<Book> allBook(){
-		List<Book> list = null;
+		List<Book> list = new ArrayList<>();
 		try {
-			list = restConnection.getList(new URL(ALL_BOOKS), StandardCharsets.UTF_8);
+			list.addAll(restConnection.getList(new URL(ALL_BOOKS), StandardCharsets.UTF_8));
 			list.stream().forEach((book) -> LOG.info(book.toString()));
 		} catch (Exception e) {
 			LOG.warning(e.getMessage());
